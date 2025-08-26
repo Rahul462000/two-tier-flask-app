@@ -1,0 +1,16 @@
+1.command to run mysql
+
+docker run -d --name mysql-container -v mysql_data_new:/var/lib/mysql --network=two-tier -e MYSQL_PASSWORD=admin -e MYSQL_USER=admin -e MYSQL_ROOT_PASSWORD=admin -e MYSQL_DATABASE=rs_db -p 3306:3306 mysql:latest
+
+Volume is mysql_data_new
+Network is two_tier
+Mysql version is 5.7 not work on Mac m4
+By default port of mysql is 3306
+
+2. Command to build flask-app
+
+Docker build -t flask-app:latest .
+
+Run flask-app
+
+docker run -d --name flask-app-container --network=two-tier -e MYSQL_PASSWORD=admin -e MYSQL_USER=admin -e MYSQL_DB=rs_db -e MYSQL_HOST=mysql-container -p 5001:5000 flask-app:latest
