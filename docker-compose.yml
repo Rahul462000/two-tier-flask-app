@@ -2,7 +2,6 @@ version: "3.8"
 
 services:
   mysql:
-    user: "${UID}:${GID}" 
     image: mysql:latest
     container_name: mysqldatabase
     environment:
@@ -11,8 +10,7 @@ services:
       MYSQL_USER: rahul
       MYSQL_PASSWORD: mysecurepass
     volumes:
-      - /Users/rahulsingh/Documents/volumes/todo_volume:/var/lib/mysql
-      - ./message.sql:/docker-entrypoint-initdb.d/message.sql  
+      - /Users/rahulsingh/Documents/volumes/todo_volume:/var/lib/mysql 
     networks:
       - data_network
     healthcheck:
@@ -33,7 +31,7 @@ services:
       MYSQL_PASSWORD: mysecurepass
       MYSQL_DB: myDB
     depends_on:
-      - mysqldatabase
+      - mysql
     networks:
       - data_network
     restart: always
