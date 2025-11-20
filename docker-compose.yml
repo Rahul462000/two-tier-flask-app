@@ -14,17 +14,17 @@ services:
     ports:
       - "3306:3306"
     healthcheck:
-      test: ["CMD", "mysqladmin","ping","-h","localhost","-uroot","-rootpass"]
+      test: ["CMD", "mysqladmin","ping","-h","localhost","-uroot","-prootpass"]
       interval: 10s
       retries: 5
-      start_period: 60s
+      start_period: 40s
       timeout: 5s
 
   todo_app:
     image: notorious007/python_todo_app:latest
     container_name: todo_app
     environment:
-      MYSQL_HOST: mysql
+      MYSQL_HOST: mysqldatabase
       MYSQL_USER: rahul
       MYSQL_PASSWORD: mysecurepass
       MYSQL_DB: myDB
@@ -33,9 +33,7 @@ services:
     ports:
       - "1000:1000"
     depends_on:
-      mysql
-        condition: service_healthy
-    restart: always
+      - mysql
 
 
 volumes: {}
