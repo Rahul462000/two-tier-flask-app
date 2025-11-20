@@ -33,7 +33,9 @@ services:
     ports:
       - "1000:1000"
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
+    restart: always
 
 
 volumes: {}
