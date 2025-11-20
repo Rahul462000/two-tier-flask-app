@@ -24,7 +24,7 @@ services:
     image: notorious007/python_todo_app:latest
     container_name: todo_app
     environment:
-      MYSQL_HOST: mysqldatabase
+      MYSQL_HOST: mysql
       MYSQL_USER: rahul
       MYSQL_PASSWORD: mysecurepass
       MYSQL_DB: myDB
